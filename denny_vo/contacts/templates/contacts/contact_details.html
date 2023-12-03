@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Details</title>
+    ><style>
+        .btn {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.btn-edit {
+    background-color: blue;
+}
+
+.btn-delete {
+    background-color: red;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Contact Details</h1>
+
+    <div>
+        <p>Name: {{ contact.name }}</p>
+        <p>Email: {{ contact.email }}</p>
+        <p>Notes: {{ contact.notes }}</p>
+        <p>Created Time: {{ contact.created_time|localtime }}</p>
+    </div>
+
+    <div>
+        <a href="{% url 'start_page' %}" class="btn">Home</a>
+        <a href="{% url 'edit_contact' pk=contact.pk %}" class="btn btn-edit">Edit</a>
+        <a href="{% url 'delete_contact' pk=contact.pk %}" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this contact?');">Delete</a>
+        <a href="{% url 'contact_detail' pk=contact.pk %}">Details</a>
+    </div>
+
+    <!-- Footer here -->
+    <div class="footer">
+        ©Created by Denny Vo
+    </div>
+
+</body>
+</html>

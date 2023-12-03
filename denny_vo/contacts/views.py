@@ -1,8 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ContactForm
 from .models import Contact
-
-# Create your views here.
+from django.urls import reverse
 
 def start_page(request):
     contacts = Contact.objects.all()  # Retrieves all contacts from the database
@@ -18,3 +17,12 @@ def create_contact(request):
         form = ContactForm()
     
     return render(request, 'contacts/create_contact.html', {'form': form})
+
+def contact_detail(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    return render(request, 'contacts/contact_detail.html', {'contact': contact})
+
+def delete_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    contact.delete()
+    return redirect(reverse('start_page'))
