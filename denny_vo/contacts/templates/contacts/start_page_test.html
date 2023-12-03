@@ -13,40 +13,39 @@
             align-items: center;
         }
         h1 {
-            color: #9003fc;
+            color: blue;
             margin: 20px 0;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center items horizontally */
-            width: 600px; /* Set a specific width for the container */
-            margin-left: auto; /* Automatically adjust the left margin */
-            margin-right: auto; /* Automatically adjust the right margin */
-        }
         .contact-button {
-            background-color: #9003fc;
-            align-self: flex-start; 
+            background-color: blue;
             color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             margin: 20px 0;
+            text-decoration: none;
+            display: inline-block;
         }
-        .contact-titles {
-            display: flex;
-            justify-content: space-between;
-            max-width: 600px;
+        .contacts-table {
             width: 100%;
-            margin-bottom: 10px;
+            max-width: 960px;
+            text-align: left;
+            border-collapse: collapse;
+            border: none;
         }
-        .contact-title {
-            font-weight: bold;
+        .contacts-table th, .contacts-table td {
+            padding: 8px;
+            border: none;
+        }
+        .contacts-table tr:nth-child(even) {
+            background-color: lightgray;
+        }
+        .contact-actions {
+            text-align: center;
         }
         .footer {
             position: absolute;
-            color: green;
             bottom: 0;
             width: 100%;
             text-align: center;
@@ -57,10 +56,10 @@
     </style>
 </head>
 <body>
-    <div class="container">
     <h1>Contact Management</h1>
     <a href="{% url 'create_contact' %}" class="contact-button">Create a New Contact</a>
     
+    <!-- Contact list as a table starts here -->
     <table class="contacts-table">
         <thead>
             <tr>
@@ -74,7 +73,7 @@
             {% for contact in contacts %}
             <tr>
                 <td class="contact-actions">
-                    <a href="{% url 'contact_detail' pk=contact.pk %}">Details</a> | 
+                    <a href="{% url 'contact_details' pk=contact.pk %}">Details</a> | 
                     <a href="{% url 'delete_contact' pk=contact.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.email }}</td>
@@ -86,11 +85,10 @@
             {% endfor %}
         </tbody>
     </table>
-
-    <!-- List of contacts will go here -->
+    <!-- Contact list as a table ends here -->
+    
     <div class="footer">
         ©Created by Denny Vo
     </div>
-</div>
 </body>
 </html>

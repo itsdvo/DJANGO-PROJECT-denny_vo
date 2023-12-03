@@ -4,7 +4,7 @@ from .models import Contact
 from django.urls import reverse
 
 def start_page(request):
-    contacts = Contact.objects.all()  # Retrieves all contacts from the database
+    contacts = Contact.objects.all()
     return render(request, 'contacts/start_page.html', {'contacts': contacts})
 
 def create_contact(request):
@@ -20,9 +20,20 @@ def create_contact(request):
 
 def contact_detail(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
-    return render(request, 'contacts/contact_detail.html', {'contact': contact})
+    return render(request, 'contacts/contact_details.html', {'contact': contact})
 
 def delete_contact(request, pk):
     contact = get_object_or_404(Contact, pk=pk)
     contact.delete()
     return redirect(reverse('start_page'))
+
+def edit_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'POST':
+        form = ContactForm(request.POST, instance=contact)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('contact_details', kwargs={'pk': contact.pk}))
+    else:
+        form = ContactForm(instance=contact)
+    return render(request, 'contacts/edit_contact.html', {'form': form, 'contact': contact})

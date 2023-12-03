@@ -14,7 +14,7 @@
         }
         h1 {
             color: #9003fc;
-            margin-top: 20px;
+            margin-top: 20px; /* Reduced top margin */
             margin-bottom: 20px;
         }
         .container {
@@ -25,25 +25,25 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
-            padding-top: 20px;
+            padding-top: 20px; /* Added padding to the top of the container */
         }
         form {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            align-items: flex-start; /* Align form items to the left */
             width: 100%;
             padding: 20px;
         }
         label {
-            display: block;
-            margin-bottom: 5px;
+            display: block; /* Block display to fill the width */
+            margin-bottom: 5px; /* Space between label and input */
         }
         input[type="text"],
         input[type="email"],
         textarea,
         input[type="submit"] {
-            width: 100%;
-            max-width: 400px;
+            width: 100%; /* Full width to fill the form */
+            max-width: 400px; /* Limit max width but use full width for smaller screens */
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -61,7 +61,7 @@
         }
         .form-action {
             display: flex;
-            justify-content: center;
+            justify-content: center; /* Center the buttons */
             width: 100%;
             max-width: 400px;
         }
@@ -81,15 +81,9 @@
             line-height: normal; 
             margin-bottom: 15px;
         }
-
-        .cancel {
-            background-color: red; /* Changed to red */
-        }
-
         .cancel:hover {
-            background-color: darkred; /* Darker red on hover */
+            background-color: #0056b3;
         }
-
         .footer {
             text-align: center;
             position: fixed;
@@ -106,7 +100,6 @@
     <div class="container">
         <h1>Create a Contact</h1>
         <form method="post" novalidate>
-            <!-- Form fields go here -->
             {% csrf_token %}
             {% for field in form %}
                 <div>
