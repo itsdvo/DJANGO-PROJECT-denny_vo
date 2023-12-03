@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #9003fc;
+            margin: 20px 0;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            width: 600px; /* Set a specific width for the container */
+            margin-left: auto; /* Automatically adjust the left margin */
+            margin-right: auto; /* Automatically adjust the right margin */
+        }
+        .contact-button {
+            background-color: #9003fc;
+            align-self: flex-start; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+        .contact-titles {
+            display: flex;
+            justify-content: space-between;
+            max-width: 600px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+        .contact-title {
+            font-weight: bold;
+        }
+        .footer {
+            position: absolute;
+            color: green;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f3f3f3;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+    <h1>Contact Management</h1>
+    <button class="contact-button">Create a New Contact</button>
+    <div class="contact-titles">
+        <span class="contact-title">Contact Name</span>
+        <span class="contact-title">Email</span>
+        <span class="contact-title">Created Time</span>
+    </div>
+    <!-- List of contacts will go here -->
+    <div class="footer">
+        ©Created by Denny Vo
+    </div>
+</div>
+</body>
+</html>
