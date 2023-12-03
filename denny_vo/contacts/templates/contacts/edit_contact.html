@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Contact</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #9003fc;
+            margin: 20px 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        textarea {
+            height: 100px;
+        }
+        .errorlist {
+            color: red;
+            font-size: 0.9em;
+            width: 100%;
+            max-width: 400px;
+            text-align: left;
+        }
+        .form-action {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .submit, .cancel {
+            padding: 10px 20px;
+            font-size: inherit;
+            cursor: pointer;
+            color: white;
+            display: inline-block;
+            text-align: center;
+            line-height: normal;
+            margin-bottom: 15px;
+            margin-right: 10px;
+            border: none;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+        .submit {
+            background-color: blue;
+        }
+        .submit:hover {
+            background-color: #0056b3;
+        }
+        .cancel {
+            background-color: red;
+        }
+        .cancel:hover {
+            background-color: darkred;
+        }
+        .footer {
+            text-align: center;
+            color: green;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #f3f3f3;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>    
+</head>
+<body>
+    <h1>Update Contact</h1>
+    <form method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div>
+                {% if field.errors %}
+                    {% for error in field.errors %}
+                        <div class="errorlist">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <div class="form-action">
+            <input type="submit" value="Submit" class="submit">
+            <a href="{% url 'contact_details' pk=contact.pk %}" class="cancel">Cancel</a>
+        </div>
+    </form>
+    
+    <div class="footer">
+        ©Created by Denny Vo
+    </div>
+</body>
+</html>
+
