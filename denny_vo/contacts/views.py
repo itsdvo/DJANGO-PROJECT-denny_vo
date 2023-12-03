@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ContactForm
 from .models import Contact
 from django.urls import reverse
+from django.views.decorators.http import require_POST
 
 def start_page(request):
     contacts = Contact.objects.all()
@@ -37,3 +38,16 @@ def edit_contact(request, pk):
     else:
         form = ContactForm(instance=contact)
     return render(request, 'contacts/edit_contact.html', {'form': form, 'contact': contact})
+
+def confirm_delete_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    if request.method == 'POST':
+        contact.delete()
+        return redirect('start_page')
+    return render(request, 'contacts/delete_contact.html', {'contact': contact})
+
+@require_POST
+def delete_contact(request, pk):
+    contact = get_object_or_404(Contact, pk=pk)
+    contact.delete()
+    return redirect('start_page')

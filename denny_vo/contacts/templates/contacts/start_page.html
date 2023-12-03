@@ -76,7 +76,7 @@
             <tr>
                 <td class="contact-actions">
                     <a href="{% url 'contact_details' pk=contact.pk %}">Details</a> | 
-                    <a href="{% url 'delete_contact' pk=contact.pk %}" onclick="return confirm('Are you sure?');">Delete</a>
+                    <a href="{% url 'confirm_delete_contact' pk=contact.pk %}" class="btn btn-delete">Delete</a>
                 <td>{{ contact.name }}</td>
                 <td>{{ contact.email }}</td>
                 <td>{{ contact.created_time }}</td>

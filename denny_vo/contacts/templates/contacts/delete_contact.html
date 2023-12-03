@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Delete</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #9003fc;
+            margin: 20px 0;
+        }
+        .confirmation {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input[type="submit"], .btn-cancel {
+            width: auto;
+            padding: 10px 20px;
+            font-size: inherit;
+            cursor: pointer;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        input[type="submit"] {
+            background-color: blue;
+        }
+        .btn-delete {
+            background-color: red;
+        }
+        .btn-cancel {
+            background-color: red; /* Set the background color to red */
+        }
+        .btn-cancel:hover {
+            background-color: darkred; /* Darker red on hover */
+        }
+        .footer {
+            text-align: center;
+            color: green;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #f3f3f3;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>
+</head>
+<body>
+    <h1>Confirm Delete</h1>
+    <div class="confirmation">
+        <p>Are you sure you want to delete contact "{{ contact.name }}"?</p>
+        <form action="{% url 'delete_contact' pk=contact.pk %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="Delete" class="btn-delete">
+            <a href="{% url 'start_page' %}" class="btn-cancel">Cancel</a>
+        </form>
+    </div>
+
+    <div class="footer">
+        ©Created by Denny Vo
+    </div>
+</body>
+</html>
