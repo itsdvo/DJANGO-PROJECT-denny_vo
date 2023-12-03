@@ -7,26 +7,42 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            height: 100%;
             display: flex;
-            justify-content: center;
             flex-direction: column;
             align-items: center;
         }
         h1 {
             color: #9003fc;
-            margin: 20px 0;
+            margin-top: 20px; /* Reduced top margin */
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 20px; /* Added padding to the top of the container */
         }
         form {
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start; /* Align form items to the left */
+            width: 100%;
             padding: 20px;
+        }
+        label {
+            display: block; /* Block display to fill the width */
+            margin-bottom: 5px; /* Space between label and input */
         }
         input[type="text"],
         input[type="email"],
         textarea,
         input[type="submit"] {
-            width: 100%; /* Full width */
+            width: 100%; /* Full width to fill the form */
             max-width: 400px; /* Limit max width but use full width for smaller screens */
             padding: 10px;
             margin-bottom: 15px;
@@ -49,6 +65,7 @@
             width: 100%;
             max-width: 400px;
         }
+        
         input[type="submit"], .cancel {
             padding: 10px 20px;
             font-size: inherit; 
@@ -70,6 +87,7 @@
         .footer {
             text-align: center;
             position: fixed;
+            color: green;
             bottom: 0;
             width: 100%;
             padding: 10px 0;
@@ -79,24 +97,26 @@
     </style>
 </head>
 <body>
-    <h1>Create a Contact</h1>
-    <form method="post" novalidate>
-        {% csrf_token %}
-        {% for field in form %}
-            <div>
-                {% if field.errors %}
-                    {% for error in field.errors %}
-                        <div class="errorlist">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-                {{ field.label_tag }} {{ field }}
+    <div class="container">
+        <h1>Create a Contact</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            {% for field in form %}
+                <div>
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                            <div class="errorlist">{{ error }}</div>
+                        {% endfor %}
+                    {% endif %}
+                    {{ field.label_tag }} {{ field }}
+                </div>
+            {% endfor %}
+            <div class="form-action">
+                <input type="submit" value="Submit">
+                <a href="{% url 'start_page' %}" class="cancel">Cancel</a>
             </div>
-        {% endfor %}
-        <div class="form-action">
-            <input type="submit" value="Submit">
-            <a href="{% url 'start_page' %}" class="cancel">Cancel</a>
-        </div>
-    </form>
+        </form>
+    </div>
     
     <div class="footer">
         ©Created by Denny Vo
